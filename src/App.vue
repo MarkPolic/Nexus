@@ -1,26 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <VehicleSelector />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import VehicleSelector from "./components/VehicleSelector.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    VehicleSelector,
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style lang="scss">
+.page_wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 100vh;
+  background-color: #f5f5f5; /* Light gray background */
+}
+body {
+  margin: 0px;
+}
+/* Styling for the main heading */
+h1 {
+  font-size: 32px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 30px;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: monospace;
 }
 </style>
