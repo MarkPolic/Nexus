@@ -36,9 +36,8 @@
           />
         </div>
       </div>
-      <div class="search_wrap">
+      <div class="search_wrap" @click="populateSelectedModel">
         <button
-          @click="populateSelectedModel"
           :disabled="!selectedYear || !selectedMake || !selectedModelName"
           class="search-btn"
         >
@@ -199,7 +198,37 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+$breakpoint-small: 600px;
+@media (max-width: $breakpoint-small) {
+  .search_wrap {
+    width: 100%;
+    border-radius: 0px;
+    margin: 20px auto;
+  }
+
+  .page_wrap {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+  }
+
+  .select_wap {
+    flex-direction: column;
+  }
+  .search_dropdown_wrap {
+    flex-direction: column;
+  }
+  .search_dropdown_wrap .search_wrap {
+    width: 100%;
+    margin: 20px auto;
+    border-radius: 0px;
+  }
+  .page_wrap .vehicle-card {
+    margin: 10px 0px;
+    width: max-content;
+  }
+}
 .select_wap {
   display: flex;
   justify-content: space-between;
@@ -273,7 +302,7 @@ export default {
   font-family: "Roboto", sans-serif;
   color: #333;
   transition: transform 0.3s ease;
-  margin: 20 auto;
+  margin: 20px auto;
   h2 {
     font-size: 28px;
     color: #2c3e50;

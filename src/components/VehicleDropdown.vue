@@ -53,7 +53,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
+$breakpoint-small: 600px;
+
 label {
   font-size: 16px;
   color: #555;
