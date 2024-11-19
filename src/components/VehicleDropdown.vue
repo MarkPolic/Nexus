@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "VehicleDropdown", // Multi-word component name
+  name: "VehicleDropdown",
   props: {
     label: {
       type: String,
@@ -54,25 +54,6 @@ export default {
 </script>
 
 <style scoped>
-.select_wap {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  width: 100%;
-  max-width: 900px;
-  background-color: #ebebeb;
-  padding: 0px 20px;
-  border: 1px solid #e0e0e0;
-  border-radius: 32px;
-  box-sizing: border-box;
-}
-
-.select_group {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-}
-
 label {
   font-size: 16px;
   color: #555;
@@ -92,15 +73,10 @@ select {
   background-color: transparent;
   border: none;
   border-radius: 5px;
-  appearance: none;
   outline: none;
   box-sizing: border-box;
   transition: all 0.3s ease;
   margin-top: 5px;
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"%3E%3Cpath fill="none" stroke="%23333" stroke-width="2" d="M3 4l3 3 3-3"%3E%3C/path%3E%3C/svg%3E');
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
 }
 
 select:hover {
@@ -113,7 +89,6 @@ select:focus {
 }
 
 option {
-  padding: 20px;
   font-size: 16px;
   font-family: monospace;
 }
@@ -122,10 +97,9 @@ option:disabled {
   color: #888;
   background-color: #f9f9f9;
 }
-
-#make_drop,
-#year_drop {
-  border-right: 1px solid #e0e0e0;
+option:hover {
+  color: black;
+  background-color: #aaa;
 }
 
 .drop_wrap:hover {

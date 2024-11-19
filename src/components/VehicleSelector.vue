@@ -3,7 +3,6 @@
     <h1>Vehicle Selector</h1>
     <div class="search_dropdown_wrap">
       <div class="select_wap">
-        <!-- Year Dropdown -->
         <div class="select_group">
           <VehicleDropdown
             label="Year:"
@@ -15,7 +14,6 @@
           />
         </div>
 
-        <!-- Make Dropdown -->
         <div class="select_group">
           <VehicleDropdown
             label="Make:"
@@ -27,7 +25,6 @@
           />
         </div>
 
-        <!-- Model Dropdown -->
         <div class="select_group">
           <VehicleDropdown
             label="Model:"
@@ -38,8 +35,6 @@
             :isDisabled="!selectedMake"
           />
         </div>
-
-        <!-- Search Button -->
       </div>
       <div class="search_wrap">
         <button
@@ -56,7 +51,6 @@
       </div>
     </div>
 
-    <!-- Display Selected Vehicle Data After Search -->
     <div v-if="selectedModel" class="vehicle-card">
       <h2>Vehicle Information</h2>
       <table>
@@ -103,12 +97,12 @@
 
 <script>
 import axios from "axios";
-import VehicleDropdown from "./VehicleDropdown.vue"; // Import the new dropdown component
+import VehicleDropdown from "./VehicleDropdown.vue";
 
 export default {
   name: "VehicleSelector",
   components: {
-    VehicleDropdown, // Register the component
+    VehicleDropdown,
   },
   data() {
     return {
@@ -118,8 +112,8 @@ export default {
       modelNames: [],
       selectedYear: "",
       selectedMake: "",
-      selectedModelName: "", // Store only the selected model name here until the search button is clicked
-      selectedModel: null, // Will store the full selected model object after search
+      selectedModelName: "",
+      selectedModel: null,
     };
   },
   methods: {
@@ -134,7 +128,7 @@ export default {
             },
           }
         );
-        this.years = response.data.map((item) => item.year); // Extract only the year values
+        this.years = response.data.map((item) => item.year);
       } catch (error) {
         console.error("Error fetching years:", error);
       }
@@ -151,11 +145,11 @@ export default {
             },
           }
         );
-        this.makes = response.data.map((item) => item.make) || []; // Extract makes
-        this.models = []; // Clear models when year changes
-        this.selectedMake = ""; // Clear selected make when year changes
-        this.selectedModelName = ""; // Clear selected model name when year changes
-        this.selectedModel = null; // Clear selected model when year changes
+        this.makes = response.data.map((item) => item.make) || [];
+        this.models = [];
+        this.selectedMake = "";
+        this.selectedModelName = "";
+        this.selectedModel = null;
       } catch (error) {
         console.error("Error fetching makes:", error);
       }
@@ -172,43 +166,40 @@ export default {
             },
           }
         );
-        this.models = response.data || []; // Assuming response is an array of model objects
-        this.modelNames = this.models.map((model) => model.model); // Update model names list for dropdown
+        this.models = response.data || [];
+        this.modelNames = this.models.map((model) => model.model);
       } catch (error) {
         console.error("Error fetching models:", error);
       }
     },
     onYearSelected(year) {
       this.selectedYear = year;
-      this.fetchMakes(); // Fetch makes after selecting a year
+      this.fetchMakes();
     },
     onMakeSelected(make) {
       this.selectedMake = make;
-      this.fetchModels(); // Fetch models after selecting a make
+      this.fetchModels();
     },
     onModelSelected(model) {
-      this.selectedModelName = model; // Only store the model name for now
+      this.selectedModelName = model;
     },
     populateSelectedModel() {
-      // This function is triggered by the search button click
       if (!this.selectedYear || !this.selectedMake || !this.selectedModelName)
         return;
 
-      // Find the full model object based on the selected model name
       const model = this.models.find((m) => m.model === this.selectedModelName);
       if (model) {
-        this.selectedModel = model; // Store the full selected model data
+        this.selectedModel = model;
       }
     },
   },
   mounted() {
-    this.fetchYears(); // Fetch years when component is mounted
+    this.fetchYears();
   },
 };
 </script>
 
 <style scoped lang="scss">
-/* Add your styles for the VehicleSelector and vehicle card here. */
 .select_wap {
   display: flex;
   justify-content: space-between;
@@ -221,35 +212,12 @@ export default {
   box-sizing: border-box;
 }
 
-/* Styling for each select element in a row */
 .select_group {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-/* Styling for labels */
-label {
-  font-size: 16px;
-  color: #555;
-  font-weight: 500;
-  text-align: left;
-  margin-bottom: 5px;
-  letter-spacing: 0.5px;
-  font-family: monospace;
-}
-
-/* Styling for the selects */
-select {
-  width: 100%;
-  height: 50px;
-  font-size: 16px;
-  color: #333;
-  background-color: transparent;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
 .search_dropdown_wrap {
   display: flex;
   max-width: 1200px;
@@ -305,8 +273,7 @@ select {
   font-family: "Roboto", sans-serif;
   color: #333;
   transition: transform 0.3s ease;
-  margin: 20px auto; /* Center the card */
-
+  margin: 20 auto;
   h2 {
     font-size: 28px;
     color: #2c3e50;
@@ -321,7 +288,7 @@ select {
 
   table {
     width: 100%;
-    border-collapse: collapse; /* Collapse borders for a clean table look */
+    border-collapse: collapse;
     margin-top: 20px;
   }
 
@@ -331,22 +298,20 @@ select {
     text-align: left;
     font-size: 16px;
     font-family: monospace;
-    border-bottom: 1px solid #f0f0f0; /* Add subtle border between rows */
+    border-bottom: 1px solid #f0f0f0;
   }
 
   th {
-    background-color: #f4f4f4; /* Background color for table headers */
+    background-color: #f4f4f4;
     font-weight: bold;
   }
 
   td {
-    background-color: #ebebeb; /* Background color for data cells */
+    background-color: #ebebeb;
   }
 
   tr:hover {
-    background-color: #f9f9f9; /* Light hover effect for rows */
+    background-color: #f9f9f9;
   }
 }
-
-/* Optional: Add subtle hover effect on the vehicle card */
 </style>
